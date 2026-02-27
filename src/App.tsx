@@ -566,20 +566,25 @@ const App: React.FC = () => {
                   { id: "templates", label: "Templates" },
                   { id: "ai", label: "AI Tools" },
                   { id: "extensions", label: "Extensions" }
-                ].map((tab) => (
-                  <button
-                    key={tab.id}
-                    type="button"
-                    onClick={() => setActiveTab(tab.id as TabId)}
-                    className={`rounded-full px-4 py-1.5 font-medium transition ${
-                      activeTab === tab.id
-                        ? "bg-gradient-to-tr from-[#ffd15c] to-[#ff8f3c] text-[#08030f] shadow-[0_12px_26px_rgba(255,159,89,0.55)]"
-                        : "text-slate-300"
-                    }`}
-                  >
-                    {tab.label}
-                  </button>
-                ))}
+                ].map((tab) => {
+                  const isActive = activeTab === tab.id;
+                  const activate = () => setActiveTab(tab.id as TabId);
+                  return (
+                    <button
+                      key={tab.id}
+                      type="button"
+                      onClick={activate}
+                      onMouseEnter={activate}
+                      className={`rounded-full px-4 py-1.5 font-medium transition-colors transition-shadow ${
+                        isActive
+                          ? "bg-gradient-to-tr from-[#ffd15c] to-[#ff8f3c] text-[#08030f] shadow-[0_12px_26px_rgba(255,159,89,0.7)]"
+                          : "border border-transparent text-slate-300 hover:text-slate-50 hover:bg-white/10 hover:shadow-[0_10px_24px_rgba(15,23,42,0.9)]"
+                      }`}
+                    >
+                      {tab.label}
+                    </button>
+                  );
+                })}
               </div>
 
               <div className="mt-5 grid gap-8 md:grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)] md:items-center">
@@ -825,7 +830,19 @@ const App: React.FC = () => {
                       muted
                       playsInline
                       loop
-                      autoPlay
+                      onMouseEnter={(e) => {
+                        const v = e.currentTarget;
+                        try {
+                          void v.play();
+                        } catch {
+                          // ignore autoplay errors
+                        }
+                      }}
+                      onMouseLeave={(e) => {
+                        const v = e.currentTarget;
+                        v.pause();
+                        v.currentTime = 0;
+                      }}
                     />
                     <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
                     <span className="pointer-events-none absolute left-3 top-3 inline-flex items-center rounded-full border border-white/30 bg-black/60 px-2 py-0.5 text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-slate-100">
