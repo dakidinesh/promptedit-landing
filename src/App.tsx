@@ -43,6 +43,8 @@ const App: React.FC = () => {
         "Turbo‑speed iterations for exploring multiple directions and batch concepts with clients."
     }
   ];
+  const ASSET_BASE = import.meta.env.BASE_URL || "/";
+
   const [activeHeroModel, setActiveHeroModel] = useState<HeroModel>(heroModels[0]);
   const [activeAiCard, setActiveAiCard] = useState<string>("VEO 3.1 Fast");
   const templateVideos = [
@@ -51,7 +53,7 @@ const App: React.FC = () => {
       title: "YouTube channel starter pack",
       description:
         "Intro, lower thirds and transitions wired for long‑form storytelling.",
-      file: "/1.mp4",
+      file: `${ASSET_BASE}1.mp4`,
       label: "YouTube templates"
     },
     {
@@ -59,7 +61,7 @@ const App: React.FC = () => {
       title: "Short‑form hooks system",
       description:
         "9:16 hooks, caption layouts and punchy cuts tuned for Shorts & Reels.",
-      file: "/2.mp4",
+      file: `${ASSET_BASE}2.mp4`,
       label: "Short‑form series"
     },
     {
@@ -67,7 +69,7 @@ const App: React.FC = () => {
       title: "Client hand‑off kit",
       description:
         "Reusable brand frames, product shots and CTA end‑cards for campaigns.",
-      file: "/3.mp4",
+      file: `${ASSET_BASE}3.mp4`,
       label: "Client campaigns"
     },
     {
@@ -75,7 +77,7 @@ const App: React.FC = () => {
       title: "Product spotlight edit",
       description:
         "Snappy, close‑up product shots with motion accents and CTA frames.",
-      file: "/4.mp4",
+      file: `${ASSET_BASE}4.mp4`,
       label: "Product promos"
     },
     {
@@ -83,7 +85,7 @@ const App: React.FC = () => {
       title: "Talking‑head coach system",
       description:
         "Clean framing, animated bullets and chapter cards for experts & course creators.",
-      file: "/5.mp4",
+      file: `${ASSET_BASE}5.mp4`,
       label: "Talking‑head"
     },
     {
@@ -91,7 +93,7 @@ const App: React.FC = () => {
       title: "Podcast clipper",
       description:
         "Side‑by‑side layouts, waveform overlays and captions for podcast repurposing.",
-      file: "/6.mp4",
+      file: `${ASSET_BASE}6.mp4`,
       label: "Podcasts"
     },
     {
@@ -99,7 +101,7 @@ const App: React.FC = () => {
       title: "Ad creative sandbox",
       description:
         "A/B‑test hooks, offers and CTAs fast with flexible ad‑ready layouts.",
-      file: "/7.mp4",
+      file: `${ASSET_BASE}7.mp4`,
       label: "Paid ads"
     },
     {
@@ -107,7 +109,7 @@ const App: React.FC = () => {
       title: "Cinematic b‑roll timeline",
       description:
         "Layered b‑roll sequences with speed‑ramps and light leaks baked in.",
-      file: "/8.mp4",
+      file: `${ASSET_BASE}8.mp4`,
       label: "Cinematic b‑roll"
     },
     {
@@ -115,7 +117,7 @@ const App: React.FC = () => {
       title: "Event recap reel",
       description:
         "Beat‑synced transitions and crowd shots optimized for quick turnaround recaps.",
-      file: "/9.mp4",
+      file: `${ASSET_BASE}9.mp4`,
       label: "Events"
     },
     {
@@ -123,7 +125,7 @@ const App: React.FC = () => {
       title: "Logo sting collection",
       description:
         "Multiple logo reveals you can swap in across channels and clients.",
-      file: "/10.mp4",
+      file: `${ASSET_BASE}10.mp4`,
       label: "Logo stings"
     },
     {
@@ -131,7 +133,7 @@ const App: React.FC = () => {
       title: "Brand explainer sequence",
       description:
         "Storyboarded, text‑driven layout for concise brand or feature explainers.",
-      file: "/11.mp4",
+      file: `${ASSET_BASE}11.mp4`,
       label: "Explainers"
     },
     {
@@ -139,7 +141,7 @@ const App: React.FC = () => {
       title: "Social proof carousel",
       description:
         "Testimonials, social screenshots and stats presented in a looping carousel.",
-      file: "/12.mp4",
+      file: `${ASSET_BASE}12.mp4`,
       label: "Social proof"
     }
   ];
@@ -320,7 +322,7 @@ const App: React.FC = () => {
               loop
               muted
               playsInline
-              src="/video.mp4"
+              src={`${ASSET_BASE}video.mp4`}
             />
             {/* Neutral dark overlay (no extra color tint) */}
             <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/25 to-black/60" />
@@ -823,19 +825,7 @@ const App: React.FC = () => {
                       muted
                       playsInline
                       loop
-                      onMouseEnter={(e) => {
-                        const v = e.currentTarget;
-                        try {
-                          void v.play();
-                        } catch {
-                          // ignore autoplay errors
-                        }
-                      }}
-                      onMouseLeave={(e) => {
-                        const v = e.currentTarget;
-                        v.pause();
-                        v.currentTime = 0;
-                      }}
+                      autoPlay
                     />
                     <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
                     <span className="pointer-events-none absolute left-3 top-3 inline-flex items-center rounded-full border border-white/30 bg-black/60 px-2 py-0.5 text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-slate-100">
