@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  @apply font-sans bg-pe-bg text-slate-100 antialiased;
+}
+
+@keyframes float-soft {
+  0% {
+    transform: translateY(0px) scale(1);
+  }
+  50% {
+    transform: translateY(-16px) scale(1.01);
+  }
+  100% {
+    transform: translateY(0px) scale(1);
+  }
+}
+
+@keyframes glow-pulse {
+  0% {
+    box-shadow: 0 26px 70px rgba(0, 0, 0, 0.9), 0 0 30px rgba(135, 115, 255, 0.4);
+  }
+  50% {
+    box-shadow: 0 32px 80px rgba(0, 0, 0, 0.95), 0 0 80px rgba(255, 159, 89, 0.9);
+  }
+  100% {
+    box-shadow: 0 26px 70px rgba(0, 0, 0, 0.9), 0 0 30px rgba(135, 115, 255, 0.4);
+  }
+}
+
+@keyframes bg-orbit {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(0, -18px, 0) scale(1.04);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes fade-up-soft {
+  0% {
+    opacity: 0;
+    transform: translateY(24px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-float-soft {
+  animation: float-soft 10s ease-in-out infinite;
+}
+
+.animate-glow-soft {
+  animation: glow-pulse 8s ease-in-out infinite;
+}
+
+.animate-bg-orbit {
+  animation: bg-orbit 26s ease-in-out infinite;
+}
+
+.animate-fade-up-soft {
+  animation: fade-up-soft 0.8s ease-out forwards;
+}
+
+.animate-fade-up-soft-delayed {
+  animation: fade-up-soft 0.7s ease-out forwards;
+  animation-delay: 120ms;
+}
+
+
